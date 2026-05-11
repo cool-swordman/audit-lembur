@@ -25,244 +25,47 @@ st.set_page_config(
 # ============================================================
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
+html,body,[class*="css"]{font-family:'DM Sans',sans-serif}
 
-html, body, [class*="css"] {
-    font-family: 'DM Sans', sans-serif;
-}
+.stApp{background:#F0F4F8}
 
-/* Background */
-.stApp {
-    background-color: #0f1117;
-    color: #e8e8e8;
-}
+section[data-testid="stSidebar"]{background:#FFFFFF;border-right:1px solid #E2E8F0}
 
-/* Sidebar */
-section[data-testid="stSidebar"] {
-    background-color: #161b27;
-    border-right: 1px solid #2a2f3e;
-}
+.brand{background:linear-gradient(135deg,#1E3A5F,#2a5298);border-radius:16px;padding:24px 28px;margin-bottom:24px;position:relative;overflow:hidden}
+.brand::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%}
+.brand-title{font-size:24px;font-weight:600;color:#FFFFFF;margin:0 0 4px;letter-spacing:-.5px}
+.brand-sub{font-size:12px;color:rgba(255,255,255,.7);font-family:'DM Mono',monospace;margin:0}
 
-section[data-testid="stSidebar"] .stMarkdown h1,
-section[data-testid="stSidebar"] .stMarkdown h2,
-section[data-testid="stSidebar"] .stMarkdown h3 {
-    color: #e8e8e8;
-}
+.metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.mcard{background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:16px 20px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.mcard::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0}
+.mcard.app::after{background:#22c55e}.mcard.rej::after{background:#ef4444}
+.mcard.con::after{background:#f59e0b}.mcard.rev::after{background:#94a3b8}
+.mval{font-size:32px;font-weight:700;color:#1a202c;line-height:1;margin-bottom:4px}
+.mlbl{font-size:11px;color:#64748b;font-weight:500;text-transform:uppercase;letter-spacing:.8px;font-family:'DM Mono',monospace}
+.mpct{font-size:12px;color:#94a3b8;margin-top:2px}
 
-/* Header brand */
-.brand-header {
-    background: linear-gradient(135deg, #1a2332 0%, #0f1117 100%);
-    border: 1px solid #2a3f5f;
-    border-radius: 16px;
-    padding: 28px 32px;
-    margin-bottom: 28px;
-    position: relative;
-    overflow: hidden;
-}
-.brand-header::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 160px; height: 160px;
-    background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
-    border-radius: 50%;
-}
-.brand-title {
-    font-size: 26px;
-    font-weight: 600;
-    color: #ffffff;
-    margin: 0 0 4px 0;
-    letter-spacing: -0.5px;
-}
-.brand-subtitle {
-    font-size: 13px;
-    color: #6b7a99;
-    font-weight: 400;
-    margin: 0;
-    font-family: 'DM Mono', monospace;
-}
-.brand-icon {
-    font-size: 32px;
-    margin-bottom: 12px;
-    display: block;
-}
+.info{background:#EFF6FF;border:1px solid #BFDBFE;border-left:3px solid #3b82f6;border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13px;color:#1e40af}
+.warn{background:#FFFBEB;border:1px solid #FDE68A;border-left:3px solid #f59e0b;border-radius:8px;padding:10px 14px;font-size:12px;color:#92400e;margin:8px 0}
+.err{background:#FEF2F2;border:1px solid #FECACA;border-left:3px solid #ef4444;border-radius:8px;padding:10px 14px;font-size:12px;color:#991b1b;margin:8px 0}
 
-/* Metric cards */
-.metric-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
-}
-.metric-card {
-    background: #161b27;
-    border: 1px solid #2a2f3e;
-    border-radius: 12px;
-    padding: 16px 20px;
-    position: relative;
-    overflow: hidden;
-}
-.metric-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    border-radius: 12px 12px 0 0;
-}
-.metric-card.approved::after { background: #22c55e; }
-.metric-card.rejected::after { background: #ef4444; }
-.metric-card.conditional::after { background: #f59e0b; }
-.metric-card.review::after { background: #6b7280; }
-.metric-value {
-    font-size: 32px;
-    font-weight: 600;
-    color: #ffffff;
-    line-height: 1;
-    margin-bottom: 4px;
-}
-.metric-label {
-    font-size: 11px;
-    color: #6b7a99;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    font-family: 'DM Mono', monospace;
-}
-.metric-pct {
-    font-size: 12px;
-    color: #4b5563;
-    margin-top: 2px;
-}
+.step{background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.snum{display:inline-block;width:26px;height:26px;background:#1E3A5F;border-radius:50%;text-align:center;line-height:26px;font-size:11px;font-weight:600;color:#FFFFFF;font-family:'DM Mono',monospace;margin-right:8px}
+.stitle{font-size:13px;font-weight:600;color:#1a202c}
+.sdesc{font-size:12px;color:#64748b;margin-top:4px;margin-left:34px}
 
-/* Status badge */
-.badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.5px;
-}
-.badge-approved    { background: #052e16; color: #22c55e; border: 1px solid #166534; }
-.badge-rejected    { background: #2d0707; color: #ef4444; border: 1px solid #7f1d1d; }
-.badge-conditional { background: #2d1f07; color: #f59e0b; border: 1px solid #78350f; }
-.badge-review      { background: #1a1f2e; color: #9ca3af; border: 1px solid #374151; }
+.log-line{font-family:'DM Mono',monospace;font-size:11px;color:#475569;padding:2px 0;border-bottom:1px solid #F1F5F9}
 
-/* Info box */
-.info-box {
-    background: #1a2332;
-    border: 1px solid #2a3f5f;
-    border-left: 3px solid #3b82f6;
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin: 12px 0;
-    font-size: 13px;
-    color: #93c5fd;
-}
+.section-title{font-size:16px;font-weight:600;color:#1a202c;margin:20px 0 12px}
 
-/* Step box */
-.step-box {
-    background: #161b27;
-    border: 1px solid #2a2f3e;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 12px;
-}
-.step-number {
-    display: inline-block;
-    width: 28px; height: 28px;
-    background: #1e3a5f;
-    border: 1px solid #2a5f9e;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 28px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #60a5fa;
-    font-family: 'DM Mono', monospace;
-    margin-right: 10px;
-}
-.step-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: #e8e8e8;
-}
-.step-desc {
-    font-size: 12px;
-    color: #6b7a99;
-    margin-top: 6px;
-    margin-left: 38px;
-}
+#MainMenu,footer,header{visibility:hidden}
+.block-container{padding-top:1.5rem;padding-bottom:2rem}
 
-/* Warning box */
-.warn-box {
-    background: #1f1a0e;
-    border: 1px solid #78350f;
-    border-left: 3px solid #f59e0b;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 12px;
-    color: #fcd34d;
-    margin: 8px 0;
-}
-
-/* Divider */
-.divider {
-    border: none;
-    border-top: 1px solid #2a2f3e;
-    margin: 20px 0;
-}
-
-/* Download button styling */
-.stDownloadButton button {
-    background: #1e3a5f !important;
-    border: 1px solid #2a5f9e !important;
-    color: #60a5fa !important;
-    border-radius: 8px !important;
-    font-family: 'DM Sans', sans-serif !important;
-    font-weight: 500 !important;
-    transition: all 0.2s !important;
-}
-.stDownloadButton button:hover {
-    background: #2a4f7f !important;
-    border-color: #3b82f6 !important;
-}
-
-/* Input styling */
-.stTextInput input, .stSelectbox select {
-    background: #161b27 !important;
-    border: 1px solid #2a2f3e !important;
-    border-radius: 8px !important;
-    color: #e8e8e8 !important;
-    font-family: 'DM Sans', sans-serif !important;
-}
-
-/* File uploader */
-.stFileUploader {
-    background: #161b27;
-    border: 1px dashed #2a3f5f;
-    border-radius: 12px;
-}
-
-/* Table */
-.stDataFrame {
-    border: 1px solid #2a2f3e;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-/* Progress bar */
-.stProgress .st-bo { background-color: #3b82f6 !important; }
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0f1117; }
-::-webkit-scrollbar-thumb { background: #2a2f3e; border-radius: 3px; }
-
-/* Hide streamlit default elements */
-#MainMenu, footer, header { visibility: hidden; }
-.block-container { padding-top: 2rem; padding-bottom: 2rem; }
+.stDownloadButton button{background:#1E3A5F!important;border:1px solid #2a5298!important;color:#FFFFFF!important;border-radius:8px!important;font-family:'DM Sans',sans-serif!important;font-weight:500!important}
+.stDownloadButton button:hover{background:#2a5298!important}
+.stButton>button[kind="primary"]{background:#1E3A5F!important;border:none!important;color:#FFFFFF!important;border-radius:8px!important;font-weight:600!important;font-size:15px!important;padding:12px!important}
+.stButton>button[kind="primary"]:hover{background:#2a5298!important;box-shadow:0 4px 20px rgba(30,58,95,.3)!important}
 </style>
 """, unsafe_allow_html=True)
 
