@@ -1,5 +1,13 @@
-1. Klik "Add file" → "Create new file"
-2. Pada kolom nama file, ketik persis:
-   .streamlit/config.toml
-3. Isi dengan kode di bawah ini
-4. Klik "Commit changes"
+[theme]
+base = "dark"
+backgroundColor = "#0f1117"
+secondaryBackgroundColor = "#161b27"
+primaryColor = "#3b82f6"
+textColor = "#e8e8e8"
+font = "sans serif"
+
+[server]
+maxUploadSize = 200
+
+[browser]
+gatherUsageStats = false
