@@ -73,9 +73,9 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
 html,body,[class*="css"]{font-family:'DM Sans',sans-serif}
-.stApp{background:#0f1117;color:#e8e8e8}
+.stApp{background:#F0FDF4;color:#e8e8e8}
 section[data-testid="stSidebar"]{background:#161b27;border-right:1px solid #2a2f3e}
-.brand{background:linear-gradient(135deg,#1a2332,#0f1117);border:1px solid #2a3f5f;border-radius:16px;padding:24px 28px;margin-bottom:24px;position:relative;overflow:hidden}
+.brand{background:linear-gradient(135deg,#1a2332,#F0FDF4);border:1px solid #2a3f5f;border-radius:16px;padding:24px 28px;margin-bottom:24px;position:relative;overflow:hidden}
 .brand::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(59,130,246,.12),transparent 70%);border-radius:50%}
 .brand-title{font-size:24px;font-weight:600;color:#fff;margin:0 0 4px;letter-spacing:-.5px}
 .brand-sub{font-size:12px;color:#6b7a99;font-family:'DM Mono',monospace;margin:0}
@@ -109,7 +109,7 @@ section[data-testid="stSidebar"]{background:#161b27;border-right:1px solid #2a2f
 .stButton>button[kind="primary"]:hover{background:#2558a8!important;transform:translateY(-1px);box-shadow:0 4px 20px rgba(59,130,246,.3)!important}
 .stProgress .st-bo{background:#3b82f6!important}
 ::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:#0f1117}
+::-webkit-scrollbar-track{background:#F0FDF4}
 ::-webkit-scrollbar-thumb{background:#2a2f3e;border-radius:3px}
 </style>
 """, unsafe_allow_html=True)
